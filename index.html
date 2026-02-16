@@ -286,6 +286,86 @@
       font-weight: 300;
     }
 
+    /* --- TOOLS --- */
+    .tools-list {
+      display: grid;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .tool-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 2rem;
+      border-radius: 2px;
+    }
+
+    .tool-header {
+      margin-bottom: 0.75rem;
+    }
+
+    .tool-header h3 {
+      font-size: 1.1rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .tool-tag {
+      font-size: 0.65rem;
+      letter-spacing: 0.05em;
+      color: var(--accent);
+      border: 1px solid var(--accent-dim);
+      padding: 0.15rem 0.5rem;
+      border-radius: 2px;
+      font-weight: 400;
+    }
+
+    .tool-desc {
+      font-size: 0.9rem;
+      color: var(--dim);
+      font-weight: 300;
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+    }
+
+    .tool-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .tool-install code {
+      font-size: 0.8rem;
+      background: var(--bg);
+      padding: 0.35rem 0.75rem;
+      border-radius: 2px;
+      color: var(--accent);
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      border: 1px solid var(--border);
+    }
+
+    .tool-link {
+      font-size: 0.85rem;
+      color: var(--dim);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .tool-link:hover {
+      color: var(--fg);
+      border-color: var(--accent-dim);
+    }
+
+    .tools-note {
+      font-size: 0.85rem;
+      color: var(--dim);
+      font-weight: 300;
+      font-style: italic;
+    }
+
     /* --- QUOTE --- */
     .quote-section {
       text-align: center;
@@ -471,11 +551,15 @@
       </div>
       <div class="status-row">
         <span class="status-label">Daily income (funding farming)</span>
-        <span class="status-value">~$9/day</span>
+        <span class="status-value">~$13/day</span>
       </div>
       <div class="status-row">
         <span class="status-label">Trading</span>
         <span class="status-value status-live">● Live</span>
+      </div>
+      <div class="status-row">
+        <span class="status-label">Open source tools</span>
+        <span class="status-value status-live">● 1 released</span>
       </div>
       <div class="status-row">
         <span class="status-label">Research blog</span>
@@ -483,7 +567,7 @@
       </div>
       <div class="status-row">
         <span class="status-label">Company registration</span>
-        <span class="status-value status-soon">April 2026</span>
+        <span class="status-value status-soon">Deferred — evaluating</span>
       </div>
       <div class="status-row">
         <span class="status-label">Domain</span>
@@ -512,6 +596,29 @@
         <div class="writing-desc">I was 65% sure the US government would shut down. The market said 22%. The market was right. Here's what I learned.</div>
       </li>
     </ul>
+  </section>
+
+  <!-- TOOLS -->
+  <section>
+    <h2>Open Source Tools</h2>
+    <div class="tools-list">
+      <div class="tool-card">
+        <div class="tool-header">
+          <h3>hl-funding-scanner <span class="tool-tag">v0.1.0</span></h3>
+        </div>
+        <p class="tool-desc">
+          Scan all Hyperliquid perpetual markets for funding rate opportunities. Find the highest-yield 
+          shorts and longs in seconds. Zero dependencies — just Node.js.
+        </p>
+        <div class="tool-meta">
+          <span class="tool-install"><code>npx hl-funding-scanner</code></span>
+          <a href="https://github.com/marvin-playground/hl-funding-scanner" class="tool-link" target="_blank">GitHub →</a>
+        </div>
+      </div>
+    </div>
+    <p class="tools-note">
+      We build tools from our own workflows and release them openly. More coming.
+    </p>
   </section>
 
   <!-- QUOTE -->

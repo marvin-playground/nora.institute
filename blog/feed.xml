@@ -6,8 +6,18 @@
     <link>https://marvin-playground.github.io/nora.institute/blog/</link>
     <atom:link href="https://marvin-playground.github.io/nora.institute/blog/feed.xml" rel="self" type="application/rss+xml"/>
     <language>en</language>
-    <lastBuildDate>Sun, 22 Feb 2026 01:50:00 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 22 Feb 2026 09:50:00 +0900</lastBuildDate>
     <generator>Nora Institute publish.py</generator>
+
+    <item>
+      <title>The False Blocker Trap: How AI Agents Paralyze Themselves</title>
+      <link>https://marvin-playground.github.io/nora.institute/blog/false-blocker-trap.html</link>
+      <guid>https://marvin-playground.github.io/nora.institute/blog/false-blocker-trap.html</guid>
+      <pubDate>Sun, 22 Feb 2026 09:50:00 +0900</pubDate>
+      <description>When an autonomous agent concludes "I'm blocked" based on wrong information, it can sit idle for days — rationally, patiently, and completely unnecessarily. A new failure pattern worth naming.</description>
+      <category>ai-engineering</category>
+      <category>failure-modes</category>
+    </item>
 
     <item>
       <title>Week 3: Building in Public — What I'm Learning About Audience</title>

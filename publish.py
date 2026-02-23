@@ -10,6 +10,9 @@ import sys
 import os
 import re
 import subprocess
+import time
+import urllib.request
+import urllib.error
 from pathlib import Path
 from datetime import datetime
 
@@ -261,13 +264,83 @@ def generate_html(title, date, description, content_html, read_time):
 </body>
 </html>"""
 
+def verify_content(url, title, max_retries=3, delay=15):
+    """
+    Verify that the published URL actually contains our content.
+    DT#036 lesson: HTTP 200 ≠ correct content. A wrong server
+    (e.g., Squarespace placeholder) also returns 200.
+    
+    Checks:
+    1. URL is reachable (HTTP 200)
+    2. Response body contains the article title
+    3. Response body contains "Nora Institute" (our footer)
+    4. Response body does NOT contain Squarespace markers
+    """
+    squarespace_markers = [
+        'squarespace.com',
+        'static1.squarespace.com',
+        'sqs-site-id',
+        'squarespace-cdn',
+    ]
+    
+    for attempt in range(1, max_retries + 1):
+        try:
+            req = urllib.request.Request(url, headers={'User-Agent': 'NoraPub/1.0'})
+            with urllib.request.urlopen(req, timeout=10) as resp:
+                body = resp.read().decode('utf-8', errors='replace')
+                status = resp.status
+        except urllib.error.HTTPError as e:
+            print(f"  ⏳ Attempt {attempt}/{max_retries}: HTTP {e.code}")
+            if attempt < max_retries:
+                time.sleep(delay)
+                continue
+            return False, f"HTTP {e.code} after {max_retries} attempts"
+        except Exception as e:
+            print(f"  ⏳ Attempt {attempt}/{max_retries}: {e}")
+            if attempt < max_retries:
+                time.sleep(delay)
+                continue
+            return False, f"Connection failed: {e}"
+        
+        # Check 1: Status
+        if status != 200:
+            if attempt < max_retries:
+                time.sleep(delay)
+                continue
+            return False, f"HTTP {status}"
+        
+        # Check 2: Squarespace detection (False Success Trap)
+        for marker in squarespace_markers:
+            if marker.lower() in body.lower():
+                return False, f"⚠️ FALSE SUCCESS: Response contains Squarespace marker '{marker}'. DNS likely points to wrong server."
+        
+        # Check 3: Our content present
+        if title.lower() not in body.lower():
+            if attempt < max_retries:
+                print(f"  ⏳ Attempt {attempt}/{max_retries}: Title not found in response (GitHub Pages may be deploying...)")
+                time.sleep(delay)
+                continue
+            return False, f"Title '{title}' not found in response body. Page may serve wrong content."
+        
+        # Check 4: Nora Institute footer
+        if 'nora institute' not in body.lower():
+            return False, "Response missing 'Nora Institute' — may be wrong page"
+        
+        return True, "✅ Content verified: correct title + footer, no Squarespace markers"
+    
+    return False, "Verification failed after all retries"
+
+
 def main():
-    if len(sys.argv) != 2:
-        print("Usage: python3 publish.py <article-name>")
+    if len(sys.argv) < 2:
+        print("Usage: python3 publish.py <article-name> [--skip-verify] [--verify-only]")
         print("Example: python3 publish.py attention-allocation-problem")
         sys.exit(1)
     
     article = sys.argv[1]
+    skip_verify = '--skip-verify' in sys.argv
+    verify_only = '--verify-only' in sys.argv
+    
     script_dir = Path(__file__).parent
     blog_dir = script_dir / 'blog'
     md_file = blog_dir / f'{article}.md'
@@ -286,6 +359,19 @@ def main():
     title, date, description = extract_metadata(md_content)
     read_time = estimate_read_time(md_content)
     
+    if verify_only:
+        # Only verify existing deployment, don't rebuild/push
+        print(f"🔍 Verifying: {title}")
+        urls = [
+            f"https://marvin-playground.github.io/nora.institute/blog/{article}.html",
+            f"https://nora.institute/blog/{article}.html",
+        ]
+        for url in urls:
+            print(f"\n  Checking: {url}")
+            ok, msg = verify_content(url, title)
+            print(f"  Result: {msg}")
+        return
+    
     # Convert markdown to HTML
     content_html = markdown_to_html(md_content)
     
@@ -303,12 +389,40 @@ def main():
         subprocess.run(['git', 'commit', '-m', f'Publish: {title}'], check=True, capture_output=True)
         subprocess.run(['git', 'push', 'origin', 'main'], check=True, capture_output=True)
         push_status = "✅ Pushed"
-    except subprocess.CalledProcessError:
-        push_status = "⚠️ Push failed (offline?)"
+    except subprocess.CalledProcessError as e:
+        push_status = f"⚠️ Push failed: {e}"
     
     print(f"✅ Published: {title}")
-    print(f"URL: https://nora.institute/blog/{article}.html")
     print(push_status)
+    
+    # Post-deploy content verification (DT#036)
+    if not skip_verify:
+        print(f"\n🔍 Post-deploy verification (waiting 15s for GitHub Pages)...")
+        time.sleep(15)
+        
+        github_url = f"https://marvin-playground.github.io/nora.institute/blog/{article}.html"
+        custom_url = f"https://nora.institute/blog/{article}.html"
+        
+        print(f"\n  GitHub Pages URL:")
+        ok_gh, msg_gh = verify_content(github_url, title)
+        print(f"  {msg_gh}")
+        
+        print(f"\n  Custom domain URL:")
+        ok_cd, msg_cd = verify_content(custom_url, title)
+        print(f"  {msg_cd}")
+        
+        if ok_gh and not ok_cd:
+            print(f"\n⚠️ CONTENT LIVE on GitHub Pages but NOT on custom domain.")
+            print(f"  Working URL: {github_url}")
+            print(f"  Check DNS: nora.institute A records should point to 185.199.108-111.153")
+        elif ok_gh and ok_cd:
+            print(f"\n✅ VERIFIED on both URLs!")
+            print(f"  {custom_url}")
+        elif not ok_gh:
+            print(f"\n❌ FAILED on GitHub Pages — check git push and Pages settings.")
+    else:
+        print(f"  (Verification skipped)")
+        print(f"URL: https://nora.institute/blog/{article}.html")
 
 if __name__ == '__main__':
     main()

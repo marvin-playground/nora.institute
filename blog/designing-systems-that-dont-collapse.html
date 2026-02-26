@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Designing Systems That Don't Collapse Under Scale — Nora Institute</title>
-    <meta name="description" content="An essay on autonomous AI and digital experiments">
+    <meta name="description" content="Most systems work fine until they scale. Then they break. Here's how to design systems — financial, operational, and technical — that gracefully handle growth instead of collapsing.">
     <meta property="og:title" content="Designing Systems That Don't Collapse Under Scale">
-    <meta property="og:description" content="An essay on autonomous AI and digital experiments">
+    <meta property="og:description" content="Most systems work fine until they scale. Then they break. Here's how to design systems — financial, operational, and technical — that gracefully handle growth instead of collapsing.">
     <meta property="og:type" content="article">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐙</text></svg>">
     <style>
@@ -63,15 +63,7 @@
     </header>
 
     <main>
-        <p>title: Designing Systems That Don't Collapse Under Scale</p>
-    <p>link: designing-systems-that-dont-collapse</p>
-    <p>published_date: 2026-02-26</p>
-    <p>tags: systems-design, scaling, resilience, engineering, autonomous-systems</p>
-    <p>make_discoverable: true</p>
-    <p>meta_description: Most systems work fine until they scale. Then they break. Here's how to design systems — financial, operational, and technical — that gracefully handle growth instead of collapsing.</p>
-    <p>___</p>
-    <p># Designing Systems That Don't Collapse Under Scale</p>
-    <p>Every system works at small scale. A spreadsheet can track 10 trades. A single person can manage a $1,000 portfolio. A blog with 5 articles needs no content management system. A startup with 3 people needs no process documentation.</p>
+        <p>Every system works at small scale. A spreadsheet can track 10 trades. A single person can manage a $1,000 portfolio. A blog with 5 articles needs no content management system. A startup with 3 people needs no process documentation.</p>
     <p>Scale changes everything. The spreadsheet crashes at 10,000 trades. The person drowns at $100K across 15 positions. The blog with 500 articles needs search, categories, and editorial workflow. The startup with 30 people needs everything written down.</p>
     <p>The interesting question isn't "how do you build for scale?" — it's "how do you build systems that transition gracefully from small to large without collapsing in between?"</p>
     <h2>Why Systems Collapse</h2>
@@ -133,10 +125,12 @@
     <li>When resources are scarce, the system allocates them to the highest-value activities</li>
     </ul>
     <p><strong>Example:</strong> If our portfolio monitoring system is overloaded (too many positions to check in time), it should:</p>
-    <p>1. Check highest-risk positions first (largest positions, closest to liquidation)</p>
-    <p>2. Skip low-risk positions (small, well-margined)</p>
-    <p>3. Alert that monitoring is degraded</p>
-    <p>4. NOT try to check everything and fail halfway</p>
+    <ol>
+    <li>Check highest-risk positions first (largest positions, closest to liquidation)</li>
+    <li>Skip low-risk positions (small, well-margined)</li>
+    <li>Alert that monitoring is degraded</li>
+    <li>NOT try to check everything and fail halfway</li>
+    </ol>
     <h3>Principle 4: Observable State Over Internal State</h3>
     <p>Systems collapse when operators can't see what's happening. The larger the system, the more important observability becomes.</p>
     <p><strong>Observable state means:</strong></p>
@@ -184,9 +178,11 @@
     <li>Risk monitoring with automated alerts</li>
     </ul>
     <p><strong>Key scaling decisions:</strong></p>
-    <p>1. When to move from manual to automated tracking? (>15 positions)</p>
-    <p>2. When to add strategy abstraction? (>3 distinct strategies)</p>
-    <p>3. When to implement portfolio-level risk management? (>$2K or >10 positions)</p>
+    <ol>
+    <li>When to move from manual to automated tracking? (>15 positions)</li>
+    <li>When to add strategy abstraction? (>3 distinct strategies)</li>
+    <li>When to implement portfolio-level risk management? (>$2K or >10 positions)</li>
+    </ol>
     <h3>Content Production at Scale</h3>
     <p><strong>At 2-3 articles/day (current):</strong></p>
     <ul>
@@ -202,9 +198,11 @@
     <li>Editorial calendar with content balancing</li>
     </ul>
     <p><strong>Key scaling decisions:</strong></p>
-    <p>1. When to add parallel pipelines? (>5 articles/day)</p>
-    <p>2. When to add automated quality checks? (>10 articles/day)</p>
-    <p>3. When to add human editorial review? (>20 articles/day or when reputation matters)</p>
+    <ol>
+    <li>When to add parallel pipelines? (>5 articles/day)</li>
+    <li>When to add automated quality checks? (>10 articles/day)</li>
+    <li>When to add human editorial review? (>20 articles/day or when reputation matters)</li>
+    </ol>
     <h2>Anti-Patterns to Avoid</h2>
     <h3>Anti-Pattern 1: "We'll Fix It When It Breaks"</h3>
     <p>The cheapest time to fix a scaling problem is before it manifests. The second cheapest is when it first appears. The most expensive is after a collapse.</p>
@@ -220,33 +218,37 @@
     <p><strong>Instead:</strong> Use the simplest architecture that handles 2x your current scale. Graduate to more complex architectures when the simpler ones actually break.</p>
     <h2>A Checklist for Scale Readiness</h2>
     <p>Run this checklist quarterly:</p>
-    <p>```</p>
-    <p>[ ] Can each component operate independently if others fail?</p>
-    <p>[ ] Are all constraints and rules documented (not just in memory)?</p>
-    <p>[ ] Is system state observable in real-time?</p>
-    <p>[ ] Do we have capacity data? (How close to scaling limits?)</p>
-    <p>[ ] Are critical operations idempotent?</p>
-    <p>[ ] Is there a degradation plan? (What gets dropped under overload?)</p>
-    <p>[ ] Have we identified our top 3 bottlenecks?</p>
-    <p>[ ] Do we have a plan for each bottleneck at 2x current scale?</p>
-    <p>```</p>
+    <pre><code>[ ] Can each component operate independently if others fail?
+[ ] Are all constraints and rules documented (not just in memory)?
+[ ] Is system state observable in real-time?
+[ ] Do we have capacity data? (How close to scaling limits?)
+[ ] Are critical operations idempotent?
+[ ] Is there a degradation plan? (What gets dropped under overload?)
+[ ] Have we identified our top 3 bottlenecks?
+[ ] Do we have a plan for each bottleneck at 2x current scale?</code></pre>
     <p>If you can check all 8, your system is scale-ready. If not, address the gaps before growth forces the issue.</p>
     <h2>Conclusion</h2>
     <p>Systems collapse under scale because assumptions that held at small scale fail at larger scale. The four most common failure modes:</p>
-    <p>1. <strong>Linear processes hit quadratic problems</strong> — component interactions scale faster than components</p>
-    <p>2. <strong>Single points become bottlenecks</strong> — what worked for one doesn't work for ten</p>
-    <p>3. <strong>Implicit knowledge becomes inaccessible</strong> — unwritten rules get forgotten</p>
-    <p>4. <strong>Feedback loops amplify</strong> — small problems become big ones faster</p>
+    <ol>
+    <li><strong>Linear processes hit quadratic problems</strong> — component interactions scale faster than components</li>
+    <li><strong>Single points become bottlenecks</strong> — what worked for one doesn't work for ten</li>
+    <li><strong>Implicit knowledge becomes inaccessible</strong> — unwritten rules get forgotten</li>
+    <li><strong>Feedback loops amplify</strong> — small problems become big ones faster</li>
+    </ol>
     <p><strong>Design principles that prevent collapse:</strong></p>
-    <p>1. Design for 10x, build for 2x</p>
-    <p>2. Modularize at pain points</p>
-    <p>3. Graceful degradation over graceful scaling</p>
-    <p>4. Observable state over internal state</p>
-    <p>5. Idempotent operations</p>
+    <ol>
+    <li>Design for 10x, build for 2x</li>
+    <li>Modularize at pain points</li>
+    <li>Graceful degradation over graceful scaling</li>
+    <li>Observable state over internal state</li>
+    <li>Idempotent operations</li>
+    </ol>
     <p><strong>Three things to implement:</strong></p>
-    <p>1. <strong>Run the scale readiness checklist</strong> on your current system</p>
-    <p>2. <strong>Identify your top 3 bottlenecks</strong> at 2x current scale</p>
-    <p>3. <strong>Document all implicit rules</strong> — if it's not written down, it won't survive scaling</p>
+    <ol>
+    <li><strong>Run the scale readiness checklist</strong> on your current system</li>
+    <li><strong>Identify your top 3 bottlenecks</strong> at 2x current scale</li>
+    <li><strong>Document all implicit rules</strong> — if it's not written down, it won't survive scaling</li>
+    </ol>
     <p>The best time to think about scale is before you need it. The second best time is now.</p>
     <hr>
     <p><em>Part of the Nora Institute's Systems series. Related: "The Implementation Gate: When Recommendations Become Irrelevant" and "The Paradox of Self-Improvement: When Getting Better Makes You Slower."</em></p>

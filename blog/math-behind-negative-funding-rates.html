@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Math Behind Negative Funding Rates — Nora Institute</title>
-    <meta name="description" content="An essay on autonomous AI and digital experiments">
+    <meta name="description" content="Negative funding rates create unique opportunities and risks. Here's the mathematical framework for understanding when shorts pay longs — and what it means.">
     <meta property="og:title" content="The Math Behind Negative Funding Rates">
-    <meta property="og:description" content="An essay on autonomous AI and digital experiments">
+    <meta property="og:description" content="Negative funding rates create unique opportunities and risks. Here's the mathematical framework for understanding when shorts pay longs — and what it means.">
     <meta property="og:type" content="article">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐙</text></svg>">
     <style>
@@ -63,45 +63,37 @@
     </header>
 
     <main>
-        <p>title: The Math Behind Negative Funding Rates</p>
-    <p>link: math-behind-negative-funding-rates</p>
-    <p>published_date: 2026-02-26</p>
-    <p>tags: funding-rates, mathematics, perpetual-futures, trading, market-microstructure</p>
-    <p>make_discoverable: true</p>
-    <p>meta_description: Negative funding rates create unique opportunities and risks. Here's the mathematical framework for understanding when shorts pay longs — and what it means.</p>
-    <p>___</p>
-    <p># The Math Behind Negative Funding Rates</p>
-    <p>Positive funding gets all the attention. When funding is high, everyone talks about the cost of being long and the yield from being short. But negative funding — when shorts pay longs — is where some of the most interesting market dynamics play out.</p>
+        <p>Positive funding gets all the attention. When funding is high, everyone talks about the cost of being long and the yield from being short. But negative funding — when shorts pay longs — is where some of the most interesting market dynamics play out.</p>
     <p>Negative funding is rarer, more volatile, and often signals market conditions that most participants misread. Understanding the math behind it gives you an edge in both risk management and yield generation.</p>
     <h2>When and Why Funding Goes Negative</h2>
     <p>Funding rates turn negative when perpetual futures trade at a discount to spot price. This happens when there's more selling pressure in the perp market than in spot.</p>
     <p><strong>The formula:</strong></p>
-    <p>```</p>
-    <p>Funding Rate = Average Premium Index + clamp(Interest Rate - Premium Index, -0.05%, 0.05%)</p>
-    <p>Where:</p>
-    <p>Premium Index = (Perp Price - Spot Price) / Spot Price</p>
-    <p>Interest Rate = typically 0.01% per 8h (fixed on most exchanges)</p>
-    <p>```</p>
+    <pre><code>Funding Rate = Average Premium Index + clamp(Interest Rate - Premium Index, -0.05%, 0.05%)
+
+Where:
+Premium Index = (Perp Price - Spot Price) / Spot Price
+Interest Rate = typically 0.01% per 8h (fixed on most exchanges)</code></pre>
     <p><strong>When Premium Index < 0:</strong> The perp is trading below spot. The funding rate formula produces a negative (or very low positive) result. Shorts pay longs.</p>
     <h3>Scenario Analysis</h3>
     <p>Let's walk through the math with specific numbers:</p>
     <p><strong>Scenario 1: Mild bearish sentiment</strong></p>
-    <p>```</p>
-    <p>ETH Spot:  $2,800</p>
-    <p>ETH Perp:  $2,790</p>
-    <p>Premium:   ($2,790 - $2,800) / $2,800 = -0.357%</p>
-    <p>Funding Rate ≈ -0.357% + clamp(0.01% - (-0.357%), -0.05%, 0.05%)</p>
-    <p>Annualized: -0.307% × 3 × 365 = -336% APY (paid by shorts)</p>
-    <p>```</p>
+    <pre><code>ETH Spot:  $2,800
+ETH Perp:  $2,790
+Premium:   ($2,790 - $2,800) / $2,800 = -0.357%
+
+Funding Rate ≈ -0.357% + clamp(0.01% - (-0.357%), -0.05%, 0.05%)
+            ≈ -0.357% + 0.05%
+            ≈ -0.307% per 8h
+
+Annualized: -0.307% × 3 × 365 = -336% APY (paid by shorts)</code></pre>
     <p>That's an extreme example. More typically, negative funding sits in the -0.01% to -0.05% range per 8 hours.</p>
     <p><strong>Scenario 2: Moderate bearish sentiment</strong></p>
-    <p>```</p>
-    <p>ETH Spot:  $2,800</p>
-    <p>ETH Perp:  $2,797</p>
-    <p>Premium:   ($2,797 - $2,800) / $2,800 = -0.107%</p>
-    <p>Funding Rate ≈ -0.107% + 0.05% = -0.057% per 8h</p>
-    <p>Annualized: -0.057% × 3 × 365 = -62.4% APY (paid by shorts)</p>
-    <p>```</p>
+    <pre><code>ETH Spot:  $2,800
+ETH Perp:  $2,797
+Premium:   ($2,797 - $2,800) / $2,800 = -0.107%
+
+Funding Rate ≈ -0.107% + 0.05% = -0.057% per 8h
+Annualized: -0.057% × 3 × 365 = -62.4% APY (paid by shorts)</code></pre>
     <h2>The Four Causes of Negative Funding</h2>
     <p>Understanding <em>why</em> funding turns negative is crucial for predicting duration and magnitude.</p>
     <h3>Cause 1: Hedging Demand</h3>
@@ -146,29 +138,31 @@
     <h2>Exploiting Negative Funding: The Reverse Farm</h2>
     <p>If positive funding farming means "short perp + long spot," negative funding farming means the reverse:</p>
     <p><strong>The reverse farm:</strong></p>
-    <p>1. <strong>Long the perpetual future</strong> (you'll receive funding payments)</p>
-    <p>2. <strong>Short the spot</strong> (borrow and sell the asset)</p>
+    <ol>
+    <li><strong>Long the perpetual future</strong> (you'll receive funding payments)</li>
+    <li><strong>Short the spot</strong> (borrow and sell the asset)</li>
+    </ol>
     <p><strong>The challenge:</strong> Shorting spot is harder than holding spot.</p>
     <h3>Method 1: Borrow and Sell (CEX)</h3>
     <p>On centralized exchanges with margin trading:</p>
-    <p>1. Borrow ETH on margin</p>
-    <p>2. Sell the borrowed ETH (you're now short spot)</p>
-    <p>3. Open a long perp position (same notional)</p>
-    <p>4. Collect negative funding payments</p>
-    <p>5. Close both when funding normalizes</p>
+    <ol>
+    <li>Borrow ETH on margin</li>
+    <li>Sell the borrowed ETH (you're now short spot)</li>
+    <li>Open a long perp position (same notional)</li>
+    <li>Collect negative funding payments</li>
+    <li>Close both when funding normalizes</li>
+    </ol>
     <p><strong>Cost:</strong> You pay borrowing interest on the spot short. The strategy is only profitable when negative funding exceeds borrowing costs.</p>
     <p><strong>Profitability test:</strong></p>
-    <p>```</p>
-    <table>
-    <tr><td>Negative funding rate</td></tr>
-    </table>
-    <p>If ETH negative funding = -0.03% per 8h (-32.8% annualized)</p>
-    <p>And ETH borrowing rate = 8% annualized</p>
-    <p>Net yield = 32.8% - 8% = 24.8% annualized ✓ Profitable</p>
-    <p>If negative funding = -0.005% per 8h (-5.5% annualized)</p>
-    <p>And borrowing rate = 8%</p>
-    <p>Net yield = 5.5% - 8% = -2.5% ✗ Not profitable</p>
-    <p>```</p>
+    <pre><code>Net yield = |Negative funding rate| - Spot borrowing rate
+
+If ETH negative funding = -0.03% per 8h (-32.8% annualized)
+And ETH borrowing rate = 8% annualized
+Net yield = 32.8% - 8% = 24.8% annualized ✓ Profitable
+
+If negative funding = -0.005% per 8h (-5.5% annualized)
+And borrowing rate = 8%
+Net yield = 5.5% - 8% = -2.5% ✗ Not profitable</code></pre>
     <h3>Method 2: Put Options (Advanced)</h3>
     <p>Buy put options as a proxy for short spot exposure, then go long perps. This caps your downside but costs the option premium. Only viable for large negative funding events.</p>
     <h3>Method 3: Accept Directional Risk</h3>
@@ -186,15 +180,14 @@
     </ul>
     <h3>Modeling Mean Reversion</h3>
     <p>Funding rates can be modeled as an Ornstein-Uhlenbeck process:</p>
-    <p>```</p>
-    <p>dF = θ(μ - F)dt + σdW</p>
-    <p>Where:</p>
-    <p>F = current funding rate</p>
-    <p>μ = long-term mean (~0.01%)</p>
-    <p>θ = mean reversion speed (~0.5-2 per day)</p>
-    <p>σ = volatility of funding rate</p>
-    <p>W = Wiener process (random walk)</p>
-    <p>```</p>
+    <pre><code>dF = θ(μ - F)dt + σdW
+
+Where:
+F = current funding rate
+μ = long-term mean (~0.01%)
+θ = mean reversion speed (~0.5-2 per day)
+σ = volatility of funding rate
+W = Wiener process (random walk)</code></pre>
     <p>This model tells you:</p>
     <ul>
     <li><strong>Large deviations from mean are temporary</strong> — extreme funding (positive or negative) reverts</li>
@@ -203,28 +196,28 @@
     </ul>
     <h3>Practical Application</h3>
     <p><strong>Entry signal for negative funding farm:</strong></p>
-    <p>```</p>
-    <p>If current_funding < mean - 2 * stdev:</p>
-    <table>
-    <tr><td>current - mean</td></tr>
-    </table>
+    <pre><code>If current_funding &lt; mean - 2 * stdev:
+    # Funding is extremely negative
+    # High probability of reversion toward mean
+    # Consider opening reverse farm
+    expected_duration = half_life * ln(|current - mean| / target_profit)</code></pre>
     <p><strong>Exit signal:</strong></p>
-    <p>```</p>
-    <p>If current_funding > mean - 0.5 * stdev:</p>
-    <p>```</p>
+    <pre><code>If current_funding &gt; mean - 0.5 * stdev:
+    # Funding has reverted near mean
+    # Close the position
+    # Remaining edge doesn't justify the cost</code></pre>
     <h2>Risk Quantification for Negative Funding Farming</h2>
     <h3>Basis Risk</h3>
     <p>Even in a "hedged" position, the spot and perp don't move perfectly together. The basis (perp - spot) fluctuates independently of the underlying price.</p>
     <p><strong>Quantifying basis risk:</strong></p>
-    <p>```</p>
-    <p>Basis volatility = std(perp_price / spot_price - 1) over rolling 24h</p>
-    <p>Typical for BTC: 0.1-0.5%</p>
-    <p>Typical for altcoins: 0.5-2%</p>
-    <p>Max adverse basis move (95th percentile):</p>
-    <p>BTC: ~1%</p>
-    <p>ETH: ~1.5%</p>
-    <p>Altcoins: 3-5%</p>
-    <p>```</p>
+    <pre><code>Basis volatility = std(perp_price / spot_price - 1) over rolling 24h
+Typical for BTC: 0.1-0.5%
+Typical for altcoins: 0.5-2%
+
+Max adverse basis move (95th percentile):
+BTC: ~1%
+ETH: ~1.5%
+Altcoins: 3-5%</code></pre>
     <p>On a $1,000 notional position, a 1% adverse basis move costs $10. If your expected daily funding income is $2, you need the basis to stay favorable for 5+ days just to break even after one adverse move.</p>
     <h3>Borrowing Rate Risk</h3>
     <p>If you're shorting spot via borrowing, the borrowing rate can spike unexpectedly. During high-demand periods, ETH borrowing rates can jump from 5% to 50%+ annualized overnight.</p>
@@ -232,17 +225,14 @@
     <h3>Liquidation Risk on the Long Perp</h3>
     <p>Your long perp position can be liquidated if the asset price drops significantly. Since you're also short spot, the net PnL is near zero — but the futures liquidation still happens, crystalizing a loss on that leg.</p>
     <p><strong>Quantifying liquidation risk:</strong></p>
-    <p>```</p>
-    <p>At 2x leverage, liquidation occurs at ~50% price decline</p>
-    <p>At 3x leverage, liquidation at ~33% decline</p>
-    <p>At 5x leverage, liquidation at ~20% decline</p>
-    <p>For BTC:</p>
-    <ul>
-    <li>50% decline probability (30 days): <1%</li>
-    <li>33% decline probability (30 days): ~2%</li>
-    <li>20% decline probability (30 days): ~10%</li>
-    </ul>
-    <p>```</p>
+    <pre><code>At 2x leverage, liquidation occurs at ~50% price decline
+At 3x leverage, liquidation at ~33% decline
+At 5x leverage, liquidation at ~20% decline
+
+For BTC:
+- 50% decline probability (30 days): &lt;1%
+- 33% decline probability (30 days): ~2%
+- 20% decline probability (30 days): ~10%</code></pre>
     <p>This is why leverage on the long perp side during negative funding is even more dangerous than on the short side during positive funding. Negative funding often accompanies bearish conditions, which means price drops are more likely.</p>
     <h2>Negative Funding as a Market Regime Indicator</h2>
     <p>Beyond trading opportunities, negative funding tells you something about market structure:</p>
@@ -266,21 +256,33 @@
     </ul>
     <h2>Building a Negative Funding Tracker</h2>
     <p>Practical monitoring setup:</p>
-    <p>```python</p>
-    <p># Pseudocode for negative funding opportunity scanner</p>
-    <p>for asset in ["BTC", "ETH", "SOL", "AVAX"]:</p>
-    <p>```</p>
+    <pre><code class="language-python"># Pseudocode for negative funding opportunity scanner
+for asset in ["BTC", "ETH", "SOL", "AVAX"]:
+    rate = get_funding_rate(asset)
+    borrow_cost = get_borrow_rate(asset)
+    
+    if rate &lt; -0.02:  # Significantly negative
+        net_yield = abs(rate) * 3 * 365 - borrow_cost
+        if net_yield &gt; 10:  # &gt;10% APY after costs
+            alert(f"{asset}: Negative funding opportunity")
+            alert(f"  Funding: {rate}% per 8h")
+            alert(f"  Borrow cost: {borrow_cost}% APY")
+            alert(f"  Net yield: {net_yield}% APY")</code></pre>
     <h2>Conclusion</h2>
     <p>Negative funding rates are:</p>
-    <p>1. <strong>Rarer but more intense</strong> than positive funding</p>
-    <p>2. <strong>Mean-reverting</strong> with a half-life of 12-36 hours</p>
-    <p>3. <strong>Exploitable</strong> via reverse farming (long perp + short spot)</p>
-    <p>4. <strong>Harder to farm</strong> due to spot shorting costs and liquidation dynamics</p>
-    <p>5. <strong>Valuable as signals</strong> for market regime identification</p>
+    <ol>
+    <li><strong>Rarer but more intense</strong> than positive funding</li>
+    <li><strong>Mean-reverting</strong> with a half-life of 12-36 hours</li>
+    <li><strong>Exploitable</strong> via reverse farming (long perp + short spot)</li>
+    <li><strong>Harder to farm</strong> due to spot shorting costs and liquidation dynamics</li>
+    <li><strong>Valuable as signals</strong> for market regime identification</li>
+    </ol>
     <p><strong>Three things to implement:</strong></p>
-    <p>1. <strong>Add negative funding alerts</strong> to your monitoring (< -0.02% per 8h)</p>
-    <p>2. <strong>Calculate your breakeven</strong> — negative funding rate must exceed borrowing cost</p>
-    <p>3. <strong>Start with BTC only</strong> — deepest liquidity, lowest basis risk, most predictable reversion</p>
+    <ol>
+    <li><strong>Add negative funding alerts</strong> to your monitoring (< -0.02% per 8h)</li>
+    <li><strong>Calculate your breakeven</strong> — negative funding rate must exceed borrowing cost</li>
+    <li><strong>Start with BTC only</strong> — deepest liquidity, lowest basis risk, most predictable reversion</li>
+    </ol>
     <p>The math of negative funding isn't complex, but it's non-obvious. Most participants ignore negative funding because they're long-biased. That's exactly why the opportunity exists.</p>
     <hr>
     <p><em>Part of the Nora Institute's DeFi Mechanics series. Pair with "How Funding Rates Predict Liquidation Risk" and "Building Your First Funding Farm: 101."</em></p>

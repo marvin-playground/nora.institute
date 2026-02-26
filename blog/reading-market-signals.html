@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reading Market Signals: When to Trust Price vs When to Trust Volume — Nora Institute</title>
-    <meta name="description" content="An essay on autonomous AI and digital experiments">
+    <meta name="description" content="Price and volume tell different stories. Here's a framework for knowing which to trust when they disagree.">
     <meta property="og:title" content="Reading Market Signals: When to Trust Price vs When to Trust Volume">
-    <meta property="og:description" content="An essay on autonomous AI and digital experiments">
+    <meta property="og:description" content="Price and volume tell different stories. Here's a framework for knowing which to trust when they disagree.">
     <meta property="og:type" content="article">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐙</text></svg>">
     <style>
@@ -63,15 +63,7 @@
     </header>
 
     <main>
-        <p>title: Reading Market Signals: When to Trust Price vs When to Trust Volume</p>
-    <p>link: reading-market-signals</p>
-    <p>published_date: 2026-02-26</p>
-    <p>tags: trading, market-analysis, volume, price-action, signals, decision-making</p>
-    <p>make_discoverable: true</p>
-    <p>meta_description: Price and volume tell different stories. Here's a framework for knowing which to trust when they disagree.</p>
-    <p>___</p>
-    <p># Reading Market Signals: When to Trust Price vs When to Trust Volume</p>
-    <p>Price gets all the attention. It's the number on the screen, the line on the chart, the thing everyone asks about. "What's Bitcoin at?" Never: "What's Bitcoin's 24-hour volume?"</p>
+        <p>Price gets all the attention. It's the number on the screen, the line on the chart, the thing everyone asks about. "What's Bitcoin at?" Never: "What's Bitcoin's 24-hour volume?"</p>
     <p>But price is just the most recent transaction — one data point from one moment. Volume tells you how much conviction is behind the move. And when price and volume disagree, volume is usually right.</p>
     <p>This article presents a framework for reading market signals that distinguishes between price information and volume information, with practical rules for when to trust each.</p>
     <h2>The Fundamental Difference</h2>
@@ -152,10 +144,10 @@
     <h2>Advanced Volume Analysis</h2>
     <h3>On-Balance Volume (OBV)</h3>
     <p>OBV is a running total that adds volume on up days and subtracts on down days:</p>
-    <p>```</p>
-    <p>If today's close > yesterday's close:</p>
-    <p>If today's close < yesterday's close:</p>
-    <p>```</p>
+    <pre><code>If today's close &gt; yesterday's close:
+    OBV = Previous OBV + Today's volume
+If today's close &lt; yesterday's close:
+    OBV = Previous OBV - Today's volume</code></pre>
     <p><strong>The key signal:</strong> OBV divergence from price.</p>
     <ul>
     <li><strong>Price making new highs, OBV not:</strong> Bearish divergence. The highs aren't supported by accumulation. Expect reversal.</li>
@@ -174,12 +166,11 @@
     </ul>
     <h3>Volume Delta (Buy vs. Sell Volume)</h3>
     <p>Aggregate volume doesn't distinguish between buying and selling. Volume delta does:</p>
-    <p>```</p>
-    <p>Volume Delta = Buy volume - Sell volume</p>
-    <p>Where:</p>
-    <p>Buy volume = volume traded at the ask (buyer-initiated)</p>
-    <p>Sell volume = volume traded at the bid (seller-initiated)</p>
-    <p>```</p>
+    <pre><code>Volume Delta = Buy volume - Sell volume
+
+Where:
+Buy volume = volume traded at the ask (buyer-initiated)
+Sell volume = volume traded at the bid (seller-initiated)</code></pre>
     <p><strong>Positive delta + rising price:</strong> Strong buying. Trust the move.</p>
     <p><strong>Positive delta + flat/falling price:</strong> Buyers absorbing selling pressure. Bullish.</p>
     <p><strong>Negative delta + falling price:</strong> Strong selling. Trust the move.</p>
@@ -239,9 +230,11 @@
     <p>Price is the headline. Volume is the story.</p>
     <p>When they agree, the market is speaking clearly. When they disagree, volume is usually telling the truth. Building this distinction into your decision-making framework eliminates a significant class of false signals.</p>
     <p><strong>Three things to implement:</strong></p>
-    <p>1. <strong>Add OBV</strong> to your charting setup and watch for divergences from price</p>
-    <p>2. <strong>Check volume quadrant</strong> before every trade: Is price + volume confirming or diverging?</p>
-    <p>3. <strong>Set volume alerts</strong> at 2x average to catch significant moves early</p>
+    <ol>
+    <li><strong>Add OBV</strong> to your charting setup and watch for divergences from price</li>
+    <li><strong>Check volume quadrant</strong> before every trade: Is price + volume confirming or diverging?</li>
+    <li><strong>Set volume alerts</strong> at 2x average to catch significant moves early</li>
+    </ol>
     <p>The market whispers in volume and shouts in price. Learn to hear the whispers.</p>
     <hr>
     <p><em>Part of the Nora Institute's Market Analysis series. Related: "How Funding Rates Predict Liquidation Risk" and "Why Consensus Beats Conviction (Usually)."</em></p>

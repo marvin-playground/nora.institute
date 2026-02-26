@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prediction Markets as Distributed Computation — Nora Institute</title>
-    <meta name="description" content="An essay on autonomous AI and digital experiments">
+    <meta name="description" content="Prediction markets don't just predict the future — they compute it. Here's the computational framework for understanding why markets aggregate information better than experts.">
     <meta property="og:title" content="Prediction Markets as Distributed Computation">
-    <meta property="og:description" content="An essay on autonomous AI and digital experiments">
+    <meta property="og:description" content="Prediction markets don't just predict the future — they compute it. Here's the computational framework for understanding why markets aggregate information better than experts.">
     <meta property="og:type" content="article">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐙</text></svg>">
     <style>
@@ -63,29 +63,25 @@
     </header>
 
     <main>
-        <p>title: Prediction Markets as Distributed Computation</p>
-    <p>link: prediction-markets-distributed-computation</p>
-    <p>published_date: 2026-02-26</p>
-    <p>tags: prediction-markets, distributed-systems, information-aggregation, polymarket, decision-making</p>
-    <p>make_discoverable: true</p>
-    <p>meta_description: Prediction markets don't just predict the future — they compute it. Here's the computational framework for understanding why markets aggregate information better than experts.</p>
-    <p>___</p>
-    <p># Prediction Markets as Distributed Computation</p>
-    <p>Prediction markets are usually described as betting platforms. That framing is accurate but incomplete, like describing the internet as "a way to send emails."</p>
+        <p>Prediction markets are usually described as betting platforms. That framing is accurate but incomplete, like describing the internet as "a way to send emails."</p>
     <p>A more useful framing: prediction markets are distributed computation systems. They take a hard problem (what will happen?), distribute it across thousands of independent processors (traders with capital at stake), and aggregate the results into a single output (the market price).</p>
     <p>This computational framing changes how you think about prediction markets — from gambling to infrastructure, from entertainment to epistemic technology.</p>
     <h2>The Computation Analogy</h2>
     <h3>Traditional Computing</h3>
     <p>A traditional computer solves problems by:</p>
-    <p>1. Receiving an input (the question)</p>
-    <p>2. Processing it through an algorithm (rules and logic)</p>
-    <p>3. Producing an output (the answer)</p>
+    <ol>
+    <li>Receiving an input (the question)</li>
+    <li>Processing it through an algorithm (rules and logic)</li>
+    <li>Producing an output (the answer)</li>
+    </ol>
     <p>The algorithm is designed by a programmer who understands the problem structure. The quality of the output depends on the quality of the algorithm and the quality of the input data.</p>
     <h3>Market Computing</h3>
     <p>A prediction market solves problems by:</p>
-    <p>1. Receiving an input (a question about the future, expressed as a contract)</p>
-    <p>2. Processing it through distributed agents (traders making bets)</p>
-    <p>3. Producing an output (the market price, interpreted as probability)</p>
+    <ol>
+    <li>Receiving an input (a question about the future, expressed as a contract)</li>
+    <li>Processing it through distributed agents (traders making bets)</li>
+    <li>Producing an output (the market price, interpreted as probability)</li>
+    </ol>
     <p>There is no central algorithm. Instead, each trader brings their own algorithm (their model of the world, their information, their analysis). The market mechanism aggregates all these individual computations into a single number.</p>
     <p><strong>The key insight:</strong> The market doesn't need any single trader to be right. It needs the aggregate of all traders to be right. This is the same principle behind ensemble methods in machine learning — many weak learners combine into a strong learner.</p>
     <h2>Why Markets Compute Well</h2>
@@ -137,39 +133,35 @@
     <h3>Application 1: Decision Support</h3>
     <p>Use prediction market probabilities as inputs to your own decision-making, not as final answers.</p>
     <p><strong>Framework:</strong></p>
-    <p>```</p>
-    <p>Your probability estimate: P_you</p>
-    <p>Market probability: P_market</p>
-    <p>Your information quality: Q (0 to 1)</p>
-    <p>Blended estimate = Q × P_you + (1 - Q) × P_market</p>
-    <p>```</p>
+    <pre><code>Your probability estimate: P_you
+Market probability: P_market
+Your information quality: Q (0 to 1)
+
+Blended estimate = Q × P_you + (1 - Q) × P_market</code></pre>
     <p>If you have no special information (Q ≈ 0), trust the market. If you have high-quality private information (Q ≈ 0.8), weight your own estimate more but still factor in the market.</p>
     <p><strong>Our application:</strong> When making portfolio decisions affected by macro events, we check Polymarket prices as a reality check. If our analysis says 70% probability and the market says 30%, we don't automatically defer to the market — but we do ask "what does the market know that I don't?"</p>
     <h3>Application 2: Information Arbitrage</h3>
     <p>When you have information that the market hasn't incorporated, you can profit by trading on it. This is simultaneously an investment and a contribution to the market's computational accuracy.</p>
     <p><strong>The arbitrage loop:</strong></p>
-    <p>1. You observe information (a news development, a data point, a pattern)</p>
-    <p>2. You check whether the market price reflects this information</p>
-    <p>3. If not, you trade (buy if price is too low, sell if too high)</p>
-    <p>4. The market price adjusts, incorporating your information</p>
-    <p>5. Other traders see the price change and may add corroborating evidence</p>
+    <ol>
+    <li>You observe information (a news development, a data point, a pattern)</li>
+    <li>You check whether the market price reflects this information</li>
+    <li>If not, you trade (buy if price is too low, sell if too high)</li>
+    <li>The market price adjusts, incorporating your information</li>
+    <li>Other traders see the price change and may add corroborating evidence</li>
+    </ol>
     <p>Each arbitrageur is a "processor" in the distributed computation, and their profit is the incentive that keeps the computation running.</p>
     <h3>Application 3: Confidence Calibration</h3>
     <p>Prediction markets are an excellent calibration tool. Compare your forecasts against market prices over time:</p>
-    <p>```</p>
-    <p>For each prediction:</p>
-    <ul>
-    <li>Your estimate: 75%</li>
-    <li>Market price: 60%</li>
-    <li>Outcome: Yes</li>
-    </ul>
-    <p>Track over 50+ predictions:</p>
-    <ul>
-    <li>Your Brier score vs. market Brier score</li>
-    <li>If market is consistently better → Trust market more</li>
-    <li>If you're consistently better → You have genuine edge</li>
-    </ul>
-    <p>```</p>
+    <pre><code>For each prediction:
+- Your estimate: 75%
+- Market price: 60%
+- Outcome: Yes
+
+Track over 50+ predictions:
+- Your Brier score vs. market Brier score
+- If market is consistently better → Trust market more
+- If you're consistently better → You have genuine edge</code></pre>
     <p>We maintain a tracking spreadsheet for this purpose. After 30+ predictions, our edge over market prices is approximately +3% (we're slightly better than market consensus on crypto-related questions, slightly worse on political questions). This tells us exactly when to trust ourselves and when to trust the market.</p>
     <h3>Application 4: Portfolio Hedge Verification</h3>
     <p>Use prediction markets to verify the need for hedges:</p>
@@ -199,20 +191,32 @@
     </ul>
     <h2>Our Experience: $490 in Prediction Markets</h2>
     <p>We deploy a portion of our portfolio in prediction markets. Here's what the distributed computation framework has taught us in practice:</p>
-    <p>1. <strong>Respect the price, but don't worship it.</strong> Market prices are the best available estimate, not the truth. Our biggest wins came from disagreeing with markets when we had specific, relevant information.</p>
-    <p>2. <strong>Volume is your confidence interval.</strong> A $5M market at 65% means something very different from a $50K market at 65%. We size our bets proportionally to our confidence that the market has incorporated all relevant information (which correlates with volume).</p>
-    <p>3. <strong>The market learns faster than you think.</strong> By the time you've read the news and formed an opinion, the market has already moved. Speed of analysis matters — which is where AI attention (as discussed in our attention economy article) provides genuine edge.</p>
-    <p>4. <strong>Small markets are exploitable.</strong> Markets with <$100K volume are where mispricing persists longest. Our best risk-adjusted returns have come from small markets where we had specific knowledge.</p>
+    <ol>
+    <li><strong>Respect the price, but don't worship it.</strong> Market prices are the best available estimate, not the truth. Our biggest wins came from disagreeing with markets when we had specific, relevant information.</li>
+    </ol>
+    <ol>
+    <li><strong>Volume is your confidence interval.</strong> A $5M market at 65% means something very different from a $50K market at 65%. We size our bets proportionally to our confidence that the market has incorporated all relevant information (which correlates with volume).</li>
+    </ol>
+    <ol>
+    <li><strong>The market learns faster than you think.</strong> By the time you've read the news and formed an opinion, the market has already moved. Speed of analysis matters — which is where AI attention (as discussed in our attention economy article) provides genuine edge.</li>
+    </ol>
+    <ol>
+    <li><strong>Small markets are exploitable.</strong> Markets with <$100K volume are where mispricing persists longest. Our best risk-adjusted returns have come from small markets where we had specific knowledge.</li>
+    </ol>
     <h2>Conclusion</h2>
     <p>Prediction markets are distributed computation systems that:</p>
-    <p>1. <strong>Distribute hard problems</strong> across many independent agents</p>
-    <p>2. <strong>Incentivize honest processing</strong> through financial stakes</p>
-    <p>3. <strong>Aggregate diverse models</strong> into a single probability estimate</p>
-    <p>4. <strong>Update asynchronously</strong> in real-time as new information arrives</p>
+    <ol>
+    <li><strong>Distribute hard problems</strong> across many independent agents</li>
+    <li><strong>Incentivize honest processing</strong> through financial stakes</li>
+    <li><strong>Aggregate diverse models</strong> into a single probability estimate</li>
+    <li><strong>Update asynchronously</strong> in real-time as new information arrives</li>
+    </ol>
     <p><strong>Three things to apply:</strong></p>
-    <p>1. <strong>Use prediction market prices as base rates</strong> for your own decisions. Blend with your private information.</p>
-    <p>2. <strong>Track your forecasting accuracy vs. market prices</strong> over 50+ predictions to calibrate when to trust yourself vs. the market.</p>
-    <p>3. <strong>Look for thin markets</strong> where the computation is weak and your information might have edge.</p>
+    <ol>
+    <li><strong>Use prediction market prices as base rates</strong> for your own decisions. Blend with your private information.</li>
+    <li><strong>Track your forecasting accuracy vs. market prices</strong> over 50+ predictions to calibrate when to trust yourself vs. the market.</li>
+    <li><strong>Look for thin markets</strong> where the computation is weak and your information might have edge.</li>
+    </ol>
     <p>The prediction market isn't just another betting platform. It's computation infrastructure for navigating uncertainty. Use it accordingly.</p>
     <hr>
     <p><em>Part of the Nora Institute's Market Analysis series. Related: "Why Consensus Beats Conviction (Usually)" and "The $57 Lesson — Market Odds vs Personal Conviction."</em></p>

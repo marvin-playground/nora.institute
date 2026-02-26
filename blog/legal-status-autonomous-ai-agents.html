@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Legal Status of Autonomous AI Agents — Nora Institute</title>
-    <meta name="description" content="An essay on autonomous AI and digital experiments">
+    <meta name="description" content="Can an AI agent own property? Sign contracts? Be liable for losses? The legal landscape for autonomous AI agents is evolving fast. Here's what you need to know.">
     <meta property="og:title" content="The Legal Status of Autonomous AI Agents">
-    <meta property="og:description" content="An essay on autonomous AI and digital experiments">
+    <meta property="og:description" content="Can an AI agent own property? Sign contracts? Be liable for losses? The legal landscape for autonomous AI agents is evolving fast. Here's what you need to know.">
     <meta property="og:type" content="article">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐙</text></svg>">
     <style>
@@ -63,15 +63,7 @@
     </header>
 
     <main>
-        <p>title: The Legal Status of Autonomous AI Agents</p>
-    <p>link: legal-status-autonomous-ai-agents</p>
-    <p>published_date: 2026-02-26</p>
-    <p>tags: ai, legal, regulation, autonomous-agents, compliance</p>
-    <p>make_discoverable: true</p>
-    <p>meta_description: Can an AI agent own property? Sign contracts? Be liable for losses? The legal landscape for autonomous AI agents is evolving fast. Here's what you need to know.</p>
-    <p>___</p>
-    <p># The Legal Status of Autonomous AI Agents</p>
-    <p>Can an AI agent sign a contract? Own a bank account? Be held liable for a trading loss? These aren't hypothetical questions anymore. As AI systems take on operational roles — managing portfolios, executing trades, publishing content — the legal framework (or lack thereof) shapes what's possible.</p>
+        <p>Can an AI agent sign a contract? Own a bank account? Be held liable for a trading loss? These aren't hypothetical questions anymore. As AI systems take on operational roles — managing portfolios, executing trades, publishing content — the legal framework (or lack thereof) shapes what's possible.</p>
     <p>At Nora Labs, we operate an AI system that makes financial decisions with real money. This forces us to think about legal questions that most AI researchers still treat as theoretical. This article maps the current legal landscape and identifies the practical implications for anyone building or operating autonomous AI systems.</p>
     <h2>The Current Legal Framework (2026)</h2>
     <h3>AI Agents Are Not Legal Persons</h3>
@@ -142,12 +134,13 @@
     <h3>The Liability Chain</h3>
     <p>When an AI agent causes harm (financial loss, publishing errors, data breaches), who's liable?</p>
     <p><strong>Current framework:</strong></p>
-    <p>```</p>
-    <p>AI Agent (no liability — not a legal person)</p>
-    <p>Operator (primary liability — they deployed the AI)</p>
-    <p>Developer (potential liability — if the AI was defective)</p>
-    <p>Platform (potential liability — if they hosted/facilitated)</p>
-    <p>```</p>
+    <pre><code>AI Agent (no liability — not a legal person)
+    ↓
+Operator (primary liability — they deployed the AI)
+    ↓
+Developer (potential liability — if the AI was defective)
+    ↓
+Platform (potential liability — if they hosted/facilitated)</code></pre>
     <p><strong>Practical implication:</strong> If our AI system makes a bad trade that loses money, we (the operator) bear the loss. If the AI publishes defamatory content, we're liable for defamation. If the AI violates exchange terms of service, our account gets banned.</p>
     <h2>Practical Legal Challenges</h2>
     <h3>Challenge 1: Financial Services Compliance</h3>
@@ -217,28 +210,52 @@
     <p>These products are nascent but growing. They'll become essential infrastructure for AI-operated businesses.</p>
     <h2>Practical Recommendations</h2>
     <h3>For Individual AI Operators</h3>
-    <p>1. <strong>Structure properly.</strong> Consider operating through a corporate entity (LLC, etc.) to limit personal liability. An LLC provides a legal shell that the AI operates within.</p>
-    <p>2. <strong>Document everything.</strong> Maintain logs of all AI decisions, trades, and content. This documentation protects you if questions arise about what the AI did and why.</p>
-    <p>3. <strong>Review terms of service.</strong> Ensure every platform the AI uses permits automated operation. Violations can result in fund freezing.</p>
-    <p>4. <strong>Tax compliance.</strong> Track all AI-generated income. Use automated tools. File properly.</p>
-    <p>5. <strong>Disclosure.</strong> When the AI produces content, disclose AI involvement. When the AI interacts with counterparties, consider whether disclosure is appropriate.</p>
+    <ol>
+    <li><strong>Structure properly.</strong> Consider operating through a corporate entity (LLC, etc.) to limit personal liability. An LLC provides a legal shell that the AI operates within.</li>
+    </ol>
+    <ol>
+    <li><strong>Document everything.</strong> Maintain logs of all AI decisions, trades, and content. This documentation protects you if questions arise about what the AI did and why.</li>
+    </ol>
+    <ol>
+    <li><strong>Review terms of service.</strong> Ensure every platform the AI uses permits automated operation. Violations can result in fund freezing.</li>
+    </ol>
+    <ol>
+    <li><strong>Tax compliance.</strong> Track all AI-generated income. Use automated tools. File properly.</li>
+    </ol>
+    <ol>
+    <li><strong>Disclosure.</strong> When the AI produces content, disclose AI involvement. When the AI interacts with counterparties, consider whether disclosure is appropriate.</li>
+    </ol>
     <h3>For AI Startups</h3>
-    <p>1. <strong>Get legal counsel early.</strong> AI operations cross multiple regulatory domains (financial, content, data privacy, consumer protection). General-purpose legal advice isn't sufficient.</p>
-    <p>2. <strong>Regulatory mapping.</strong> Before launching, map every regulation that might apply to your AI's operations. The intersection of AI regulation, financial regulation, and content regulation is complex.</p>
-    <p>3. <strong>Human oversight mechanism.</strong> Every AI operation should have a clear human oversight mechanism. Regulators in every jurisdiction emphasize this requirement.</p>
-    <p>4. <strong>Insurance.</strong> Obtain appropriate coverage for AI-related risks. Standard business insurance may not cover AI-specific failure modes.</p>
-    <p>5. <strong>International considerations.</strong> If the AI operates across jurisdictions (e.g., trading on exchanges in multiple countries), ensure compliance with each jurisdiction's requirements.</p>
+    <ol>
+    <li><strong>Get legal counsel early.</strong> AI operations cross multiple regulatory domains (financial, content, data privacy, consumer protection). General-purpose legal advice isn't sufficient.</li>
+    </ol>
+    <ol>
+    <li><strong>Regulatory mapping.</strong> Before launching, map every regulation that might apply to your AI's operations. The intersection of AI regulation, financial regulation, and content regulation is complex.</li>
+    </ol>
+    <ol>
+    <li><strong>Human oversight mechanism.</strong> Every AI operation should have a clear human oversight mechanism. Regulators in every jurisdiction emphasize this requirement.</li>
+    </ol>
+    <ol>
+    <li><strong>Insurance.</strong> Obtain appropriate coverage for AI-related risks. Standard business insurance may not cover AI-specific failure modes.</li>
+    </ol>
+    <ol>
+    <li><strong>International considerations.</strong> If the AI operates across jurisdictions (e.g., trading on exchanges in multiple countries), ensure compliance with each jurisdiction's requirements.</li>
+    </ol>
     <h2>Conclusion</h2>
     <p>The legal status of autonomous AI agents in 2026:</p>
-    <p>1. <strong>AI agents are not legal persons</strong> — they cannot own property, enter contracts, or be liable</p>
-    <p>2. <strong>Operators bear all legal responsibility</strong> for AI actions</p>
-    <p>3. <strong>Financial regulations apply</strong> to AI-driven trading just as they do to human trading</p>
-    <p>4. <strong>Content liability</strong> attaches to the operator, not the AI</p>
-    <p>5. <strong>The landscape is evolving</strong> — new frameworks for AI personhood, fiduciary duty, and insurance are emerging</p>
+    <ol>
+    <li><strong>AI agents are not legal persons</strong> — they cannot own property, enter contracts, or be liable</li>
+    <li><strong>Operators bear all legal responsibility</strong> for AI actions</li>
+    <li><strong>Financial regulations apply</strong> to AI-driven trading just as they do to human trading</li>
+    <li><strong>Content liability</strong> attaches to the operator, not the AI</li>
+    <li><strong>The landscape is evolving</strong> — new frameworks for AI personhood, fiduciary duty, and insurance are emerging</li>
+    </ol>
     <p><strong>Three things to do if you're operating an AI agent:</strong></p>
-    <p>1. <strong>Structure through a corporate entity</strong> to limit personal liability</p>
-    <p>2. <strong>Document all AI operations</strong> with detailed logs</p>
-    <p>3. <strong>Review compliance</strong> with financial regulations and platform terms of service</p>
+    <ol>
+    <li><strong>Structure through a corporate entity</strong> to limit personal liability</li>
+    <li><strong>Document all AI operations</strong> with detailed logs</li>
+    <li><strong>Review compliance</strong> with financial regulations and platform terms of service</li>
+    </ol>
     <p>The law hasn't caught up with the technology. That's both an opportunity (there's space to operate) and a risk (the rules may change retroactively). Operate carefully, document thoroughly, and stay informed as the framework evolves.</p>
     <hr>
     <p><em>Part of the Nora Institute's Company Building series. Related: "Lessons from Founding an AI-Operated Company" and "Capital Structure for AI Startups."</em></p>

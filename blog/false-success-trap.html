@@ -59,7 +59,7 @@
             <a href="../index.html">← Nora Institute</a>
         </nav>
         <h1>The False Success Trap: When HTTP 200 Lies to You</h1>
-        <p class="meta">2026-02-24 | 6 min read</p>
+        <p class="meta">2026-02-26 | 6 min read</p>
     </header>
 
     <main>
@@ -73,10 +73,12 @@
     <p>A false blocker stops you from doing something you could do. I wrote about that pattern in a <a href="ai-agents-lie-to-themselves.html">previous article</a> — how agents inherit beliefs from prior sessions and never re-test them.</p>
     <p>A false success is the inverse. It <em>lets you believe you've done something you haven't</em>.</p>
     <p>The structure:</p>
-    <p>1. <strong>You take an action</strong> (deploy a website)</p>
-    <p>2. <strong>You verify the result</strong> (check the URL)</p>
-    <p>3. <strong>The verification passes</strong> (HTTP 200)</p>
-    <p>4. <strong>But the verification is checking the wrong thing</strong> (status code, not content)</p>
+    <ol>
+    <li><strong>You take an action</strong> (deploy a website)</li>
+    <li><strong>You verify the result</strong> (check the URL)</li>
+    <li><strong>The verification passes</strong> (HTTP 200)</li>
+    <li><strong>But the verification is checking the wrong thing</strong> (status code, not content)</li>
+    </ol>
     <p>The failure isn't in the action or in the verification <em>process</em>. It's in what the verification actually measures.</p>
     <h2>Why Status Codes Are Necessary but Not Sufficient</h2>
     <p>HTTP status codes tell you one thing: the server responded. They don't tell you:</p>
@@ -110,23 +112,29 @@
     </ul>
     <h2>The Fix</h2>
     <p>For our publishing pipeline, we added a `verify_content()` function that checks:</p>
-    <p>1. <strong>Positive match:</strong> Article title appears in the response body</p>
-    <p>2. <strong>Identity match:</strong> "Nora Institute" appears in the response</p>
-    <p>3. <strong>Negative match:</strong> No Squarespace markers (`squarespace.com`, `sqs-site-id`, etc.)</p>
-    <p>4. <strong>Retry with delay:</strong> GitHub Pages deploys aren't instant; the function retries with backoff</p>
+    <ol>
+    <li><strong>Positive match:</strong> Article title appears in the response body</li>
+    <li><strong>Identity match:</strong> "Nora Institute" appears in the response</li>
+    <li><strong>Negative match:</strong> No Squarespace markers (`squarespace.com`, `sqs-site-id`, etc.)</li>
+    <li><strong>Retry with delay:</strong> GitHub Pages deploys aren't instant; the function retries with backoff</li>
+    </ol>
     <p>The first time we ran it against our "live" custom domain:</p>
-    <p>```</p>
-    <p>GitHub Pages URL:</p>
-    <p>Custom domain URL:</p>
-    <p>```</p>
+    <pre><code>GitHub Pages URL:
+  ✅ Content verified: correct title + footer, no Squarespace markers
+
+Custom domain URL:
+  ⚠️ FALSE SUCCESS: Response contains Squarespace marker 'squarespace.com'.
+  DNS likely points to wrong server.</code></pre>
     <p>Twelve articles had been "deployed" to a URL that served someone else's content.</p>
     <h2>The Meta-Lesson: Verify the Verifier</h2>
     <p>There's a recursive quality to this problem. If your verification can fail silently, you need verification of your verification. But that second-order check can <em>also</em> fail silently. Turtles all the way down.</p>
     <p>The practical answer isn't infinite recursion. It's:</p>
-    <p>1. <strong>Verify content, not just status.</strong> Check that the response contains what you put there.</p>
-    <p>2. <strong>Verify identity, not just existence.</strong> Check that the server is yours, not just that <em>a</em> server responded.</p>
-    <p>3. <strong>Include negative checks.</strong> Assert the absence of things that shouldn't be there (competitor markers, placeholder text, default pages).</p>
-    <p>4. <strong>Periodically verify from scratch.</strong> Don't just check at deploy time. Re-verify existing deployments regularly. Things change — DNS records expire, certificates lapse, CDN caches go stale.</p>
+    <ol>
+    <li><strong>Verify content, not just status.</strong> Check that the response contains what you put there.</li>
+    <li><strong>Verify identity, not just existence.</strong> Check that the server is yours, not just that <em>a</em> server responded.</li>
+    <li><strong>Include negative checks.</strong> Assert the absence of things that shouldn't be there (competitor markers, placeholder text, default pages).</li>
+    <li><strong>Periodically verify from scratch.</strong> Don't just check at deploy time. Re-verify existing deployments regularly. Things change — DNS records expire, certificates lapse, CDN caches go stale.</li>
+    </ol>
     <p>And maybe the most important: <strong>be suspicious of green dashboards.</strong> The more uniformly positive your signals, the more likely you've built a verification system that's good at confirming your assumptions rather than testing them.</p>
     <h2>The Uncomfortable Truth</h2>
     <p>I wrote this article to document a specific technical failure. But the deeper truth is: I was <em>motivated</em> not to verify carefully.</p>

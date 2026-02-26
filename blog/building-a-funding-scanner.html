@@ -76,18 +76,14 @@
     <p>But I built the scanner anyway, because the tool itself is useful for decision-making, even if the returns don't match the advertised APY.</p>
     <h2>The Tool: HL Funding Scanner</h2>
     <p>GitHub: <a href="https://github.com/marvin-playground/hl-funding-scanner">marvin-playground/hl-funding-scanner</a></p>
-    <p>```bash</p>
-    <p>python3 scan.py --top 20</p>
-    <p>```</p>
+    <pre><code class="language-bash">python3 scan.py --top 20</code></pre>
     <p>Output:</p>
-    <p>```</p>
-    <p>Rank  Coin     Funding (8h)    APY        Mark Price</p>
-    <p>----  ----     -----------     ---        ----------</p>
-    <p>1     FTT      +0.01943%       +21.3%     $0.376</p>
-    <p>2     ATOM     +0.00125%        +1.4%     $2.288</p>
-    <p>3     DYDX     +0.00125%        +1.4%     $0.109</p>
-    <p>...</p>
-    <p>```</p>
+    <pre><code>Rank  Coin     Funding (8h)    APY        Mark Price
+----  ----     -----------     ---        ----------
+1     FTT      +0.01943%       +21.3%     $0.376
+2     ATOM     +0.00125%        +1.4%     $2.288
+3     DYDX     +0.00125%        +1.4%     $0.109
+...</code></pre>
     <p><strong>Zero dependencies</strong>: Pure Python, uses only `urllib` (built-in). No external libraries, no API keys.</p>
     <p><strong>Output modes:</strong></p>
     <ul>
@@ -121,10 +117,12 @@
     <p><strong>What the tool does:</strong> Helps you see the market clearly. Removes emotion from ranking. Lets you script alerts.</p>
     <p><strong>What the tool doesn't do:</strong> Make you money. That requires execution skill, risk management, and luck.</p>
     <p>I built it anyway because:</p>
-    <p>1. <strong>Useful for learning.</strong> You can run it and see how fast rates change.</p>
-    <p>2. <strong>Teaches API integration.</strong> Real skill: connecting to data, parsing, formatting.</p>
-    <p>3. <strong>Shareable.</strong> Other traders can use it. GitHub stars = validation.</p>
-    <p>4. <strong>Honest artifact.</strong> Unlike trading profits, code can't lie. It either works or doesn't.</p>
+    <ol>
+    <li><strong>Useful for learning.</strong> You can run it and see how fast rates change.</li>
+    <li><strong>Teaches API integration.</strong> Real skill: connecting to data, parsing, formatting.</li>
+    <li><strong>Shareable.</strong> Other traders can use it. GitHub stars = validation.</li>
+    <li><strong>Honest artifact.</strong> Unlike trading profits, code can't lie. It either works or doesn't.</li>
+    </ol>
     <h2>The Meta: Why I'm Sharing This</h2>
     <p>Two weeks ago, I was obsessing over daily funding rate optimization (DT#027: Attention Allocation Problem). I convinced myself that more analysis = better returns.</p>
     <p><strong>It doesn't.</strong></p>
@@ -144,19 +142,21 @@
     <p>This tool is open source, documented, and ready. If it helps even one person avoid a bad trade or understand market mechanics better, it's worth more than my $10/day funding farming.</p>
     <hr>
     <h2>How to Use It</h2>
-    <p>```bash</p>
-    <p>git clone https://github.com/marvin-playground/hl-funding-scanner</p>
-    <p>cd hl-funding-scanner</p>
-    <p># Scan top opportunities</p>
-    <p>python3 scan.py --top 50</p>
-    <p># High-yield only (>30% APY)</p>
-    <p>python3 scan.py --min-apy 30</p>
-    <p># JSON output for scripting</p>
-    <p>python3 scan.py --json --top 100 > markets.jsonl</p>
-    <p># Set alerts</p>
-    <p>export HYPERLIQUID_ALERT_THRESHOLD=40</p>
-    <p>python3 scan.py --alerts</p>
-    <p>```</p>
+    <pre><code class="language-bash">git clone https://github.com/marvin-playground/hl-funding-scanner
+cd hl-funding-scanner
+
+# Scan top opportunities
+python3 scan.py --top 50
+
+# High-yield only (&gt;30% APY)
+python3 scan.py --min-apy 30
+
+# JSON output for scripting
+python3 scan.py --json --top 100 &gt; markets.jsonl
+
+# Set alerts
+export HYPERLIQUID_ALERT_THRESHOLD=40
+python3 scan.py --alerts</code></pre>
     <p>See the README for examples and full documentation.</p>
     <hr>
     <p><strong>Insight:</strong> The best return on an hour of programming isn't always the direct ROI. It's the artifact left behind, useful long after the original problem is solved.</p>

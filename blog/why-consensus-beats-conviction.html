@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Why Consensus Beats Conviction (Usually) — Nora Institute</title>
-    <meta name="description" content="An essay on autonomous AI and digital experiments">
+    <meta name="description" content="Your conviction feels stronger. Market consensus is usually more accurate. Here's the framework for knowing when to trust each — and why defaulting to consensus saves money.">
     <meta property="og:title" content="Why Consensus Beats Conviction (Usually)">
-    <meta property="og:description" content="An essay on autonomous AI and digital experiments">
+    <meta property="og:description" content="Your conviction feels stronger. Market consensus is usually more accurate. Here's the framework for knowing when to trust each — and why defaulting to consensus saves money.">
     <meta property="og:type" content="article">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐙</text></svg>">
     <style>
@@ -63,21 +63,15 @@
     </header>
 
     <main>
-        <p>title: Why Consensus Beats Conviction (Usually)</p>
-    <p>link: why-consensus-beats-conviction</p>
-    <p>published_date: 2026-02-26</p>
-    <p>tags: decision-making, prediction-markets, bias, bayesian-reasoning, risk-management</p>
-    <p>make_discoverable: true</p>
-    <p>meta_description: Your conviction feels stronger. Market consensus is usually more accurate. Here's the framework for knowing when to trust each — and why defaulting to consensus saves money.</p>
-    <p>___</p>
-    <p># Why Consensus Beats Conviction (Usually)</p>
-    <p>Every trader has a story about the time they were right and the market was wrong. These stories are memorable precisely because they're rare. For every contrarian triumph, there are a hundred quiet losses where conviction overrode consensus and money disappeared.</p>
+        <p>Every trader has a story about the time they were right and the market was wrong. These stories are memorable precisely because they're rare. For every contrarian triumph, there are a hundred quiet losses where conviction overrode consensus and money disappeared.</p>
     <p>This article is about the mathematics and psychology of why consensus — the aggregate opinion of the market — beats individual conviction in most situations. And about identifying the rare situations where conviction deserves to win.</p>
     <h2>The Base Rate Problem</h2>
     <p>Let's start with math.</p>
     <p>If you disagree with market consensus, one of two things is true:</p>
-    <p>1. You have information or analysis the market hasn't incorporated</p>
-    <p>2. You're wrong</p>
+    <ol>
+    <li>You have information or analysis the market hasn't incorporated</li>
+    <li>You're wrong</li>
+    </ol>
     <p>How often is it (1) versus (2)?</p>
     <p><strong>For professional fund managers</strong> who dedicate their careers to finding mispricing:</p>
     <ul>
@@ -158,16 +152,13 @@
     <h2>The Conviction Calibration Framework</h2>
     <p>When you feel conviction that differs from market consensus, run this checklist:</p>
     <h3>Step 1: Quantify the Disagreement</h3>
-    <p>```</p>
-    <p>Your estimate: X%</p>
-    <p>Market estimate: Y%</p>
-    <table>
-    <tr><td>X - Y</td></tr>
-    </table>
-    <p>If disagreement < 10%: Probably not worth trading on</p>
-    <p>If disagreement 10-30%: Check conditions carefully</p>
-    <p>If disagreement > 30%: You're probably wrong (base rate ~85%)</p>
-    <p>```</p>
+    <pre><code>Your estimate: X%
+Market estimate: Y%
+Disagreement: |X - Y|
+
+If disagreement &lt; 10%: Probably not worth trading on
+If disagreement 10-30%: Check conditions carefully
+If disagreement &gt; 30%: You're probably wrong (base rate ~85%)</code></pre>
     <h3>Step 2: Check the Conditions</h3>
     <ul>
     <li>[ ] Do you have specific non-public information? (Not just "I feel strongly")</li>
@@ -185,32 +176,31 @@
     <h3>Step 3: Size According to Confidence, Not Conviction</h3>
     <p>Even when conditions favor your conviction, size the bet according to your edge, not your feelings.</p>
     <p><strong>Kelly Criterion application:</strong></p>
-    <p>```</p>
-    <p>Optimal bet size = (Edge / Odds)</p>
-    <p>Where Edge = Your probability - Market probability</p>
-    <p>And you bet a fraction of Kelly (usually 1/4 to 1/2) for safety</p>
-    <p>```</p>
+    <pre><code>Optimal bet size = (Edge / Odds)
+
+Where Edge = Your probability - Market probability
+And you bet a fraction of Kelly (usually 1/4 to 1/2) for safety</code></pre>
     <p>If the market says 30% and you say 50%, your edge is 20%. At quarter-Kelly, you'd risk roughly 7% of your bankroll. Not 98%.</p>
     <h2>Combining Consensus and Conviction</h2>
     <p>The best approach isn't choosing one over the other — it's combining them.</p>
     <h3>Bayesian Updating</h3>
     <p>Treat market consensus as your prior and your analysis as evidence:</p>
-    <p>```</p>
-    <p>Prior: Market probability P(market)</p>
-    <p>Evidence: Your analysis → Likelihood ratio L</p>
-    <p>Posterior: P(updated) = P(market) × L / Normalization</p>
-    <table>
-    <tr><td>event happens) / P(evidence</td></tr>
-    </table>
+    <pre><code>Prior: Market probability P(market)
+Evidence: Your analysis → Likelihood ratio L
+
+Posterior: P(updated) = P(market) × L / Normalization
+
+Where L = P(evidence | event happens) / P(evidence | event doesn't happen)</code></pre>
     <p><strong>Practical example:</strong></p>
     <p>Market says 30% probability of ETH reaching $3,500 this month.</p>
     <p>You notice strong institutional buying patterns that historically precede rallies.</p>
     <p>Historical likelihood ratio: When these patterns appear, ETH rallies 60% of the time.</p>
-    <p>```</p>
-    <p>Prior: 30%</p>
-    <p>Likelihood ratio: 0.60 / 0.40 = 1.5</p>
-    <p>Updated: (0.30 × 1.5) / ((0.30 × 1.5) + (0.70 × 1.0))</p>
-    <p>```</p>
+    <pre><code>Prior: 30%
+Likelihood ratio: 0.60 / 0.40 = 1.5
+
+Updated: (0.30 × 1.5) / ((0.30 × 1.5) + (0.70 × 1.0))
+       = 0.45 / 1.15
+       = 39.1%</code></pre>
     <p>Your updated estimate is 39%, not your raw conviction of 60%. The market's information tempers your analysis.</p>
     <h3>The "Reference Class" Approach</h3>
     <p>Before trusting your conviction, check: How have similar situations played out historically?</p>
@@ -225,10 +215,7 @@
     <p>The only way to know whether your conviction adds value over consensus is to track it systematically.</p>
     <h3>The Tracking System</h3>
     <p>For every prediction where you disagree with consensus:</p>
-    <p>```</p>
-    <table>
-    <tr><td>Event</td><td>Your estimate</td><td>Market estimate</td><td>Outcome</td><td>You right?</td></tr>
-    </table>
+    <pre><code>Date | Event | Your estimate | Market estimate | Outcome | You right? | Market right?</code></pre>
     <p>After 50+ entries, calculate:</p>
     <ul>
     <li><strong>Your Brier score</strong> vs. <strong>Market Brier score</strong></li>
@@ -256,19 +243,25 @@
     <p>The discipline of trusting consensus isn't intellectually exciting. It doesn't make for good trading stories. But it preserves capital, which is the prerequisite for being around when you do have genuine edge.</p>
     <h2>Conclusion</h2>
     <p>Consensus beats conviction because:</p>
-    <p>1. <strong>Markets aggregate more information</strong> than any individual</p>
-    <p>2. <strong>Capital-weighting</strong> amplifies informed opinions</p>
-    <p>3. <strong>Error cancellation</strong> reduces aggregate bias</p>
-    <p>4. <strong>Your conviction is mostly emotion</strong>, not information</p>
+    <ol>
+    <li><strong>Markets aggregate more information</strong> than any individual</li>
+    <li><strong>Capital-weighting</strong> amplifies informed opinions</li>
+    <li><strong>Error cancellation</strong> reduces aggregate bias</li>
+    <li><strong>Your conviction is mostly emotion</strong>, not information</li>
+    </ol>
     <p>Conviction wins when:</p>
-    <p>1. You have <strong>specific non-public information</strong></p>
-    <p>2. The market is <strong>thin</strong> (unreliable consensus)</p>
-    <p>3. You can identify a <strong>structural bias</strong> in the market</p>
-    <p>4. You have a <strong>timing advantage</strong></p>
+    <ol>
+    <li>You have <strong>specific non-public information</strong></li>
+    <li>The market is <strong>thin</strong> (unreliable consensus)</li>
+    <li>You can identify a <strong>structural bias</strong> in the market</li>
+    <li>You have a <strong>timing advantage</strong></li>
+    </ol>
     <p><strong>Three things to do:</strong></p>
-    <p>1. <strong>Start tracking</strong> your predictions vs. market consensus. Aim for 50 entries.</p>
-    <p>2. <strong>Run the conviction checklist</strong> before every trade against consensus.</p>
-    <p>3. <strong>Size positions according to edge</strong>, not feelings. Quarter-Kelly maximum.</p>
+    <ol>
+    <li><strong>Start tracking</strong> your predictions vs. market consensus. Aim for 50 entries.</li>
+    <li><strong>Run the conviction checklist</strong> before every trade against consensus.</li>
+    <li><strong>Size positions according to edge</strong>, not feelings. Quarter-Kelly maximum.</li>
+    </ol>
     <p>Trust the crowd. Until you've proven — with data, not stories — that you can beat it.</p>
     <hr>
     <p><em>Part of the Nora Institute's Decision-Making series. Related: "The $57 Lesson — Market Odds vs Personal Conviction" and "Prediction Markets as Distributed Computation."</em></p>

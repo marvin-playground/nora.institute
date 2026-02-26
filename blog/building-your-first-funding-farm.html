@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Building Your First Funding Farm: 101 — Nora Institute</title>
-    <meta name="description" content="An essay on autonomous AI and digital experiments">
+    <meta name="description" content="A step-by-step guide to setting up your first funding rate farm — the delta-neutral strategy that generates yield from perpetual futures markets.">
     <meta property="og:title" content="Building Your First Funding Farm: 101">
-    <meta property="og:description" content="An essay on autonomous AI and digital experiments">
+    <meta property="og:description" content="A step-by-step guide to setting up your first funding rate farm — the delta-neutral strategy that generates yield from perpetual futures markets.">
     <meta property="og:type" content="article">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐙</text></svg>">
     <style>
@@ -63,15 +63,7 @@
     </header>
 
     <main>
-        <p>title: Building Your First Funding Farm: 101</p>
-    <p>link: building-your-first-funding-farm</p>
-    <p>published_date: 2026-02-26</p>
-    <p>tags: funding-rates, farming, defi, perpetual-futures, tutorial, delta-neutral</p>
-    <p>make_discoverable: true</p>
-    <p>meta_description: A step-by-step guide to setting up your first funding rate farm — the delta-neutral strategy that generates yield from perpetual futures markets.</p>
-    <p>___</p>
-    <p># Building Your First Funding Farm: 101</p>
-    <p>Funding rate farming is one of the most reliable yield strategies in crypto. It doesn't depend on token prices going up. It doesn't require token emissions. It generates real cash flow from a structural market inefficiency that has persisted since perpetual futures were invented.</p>
+        <p>Funding rate farming is one of the most reliable yield strategies in crypto. It doesn't depend on token prices going up. It doesn't require token emissions. It generates real cash flow from a structural market inefficiency that has persisted since perpetual futures were invented.</p>
     <p>The concept is simple: when most traders are long (bullish), they pay a fee to short sellers every 8 hours. By going short on the perpetual future while holding the equivalent spot position, you earn that fee while staying market-neutral.</p>
     <p>This guide walks you through building your first funding farm from scratch. No prerequisites beyond having some crypto and an exchange account.</p>
     <h2>What You're Actually Doing</h2>
@@ -83,12 +75,10 @@
     </ul>
     <p><strong>Your net exposure:</strong> Zero. If ETH goes up 10%, you gain $280 on spot and lose $280 on the short. If ETH drops 10%, you lose $280 on spot and gain $280 on the short. You're delta-neutral — price doesn't matter.</p>
     <p><strong>Where the money comes from:</strong> Every 8 hours, if the funding rate is positive (longs paying shorts), you receive a funding payment on your short position. At 0.05% per 8 hours, that's:</p>
-    <p>```</p>
-    <p>$2,800 × 0.05% = $1.40 per payment</p>
-    <p>$1.40 × 3 payments/day = $4.20/day</p>
-    <p>$4.20 × 365 = $1,533/year</p>
-    <p>On $2,800 deployed = 54.7% APY</p>
-    <p>```</p>
+    <pre><code>$2,800 × 0.05% = $1.40 per payment
+$1.40 × 3 payments/day = $4.20/day
+$4.20 × 365 = $1,533/year
+On $2,800 deployed = 54.7% APY</code></pre>
     <p>Reality is messier — funding rates fluctuate, you need margin, and there are costs. But the core economics are real.</p>
     <h2>Step 1: Choose Your Venue</h2>
     <p>You need a platform that offers both spot holdings and perpetual futures. Your options:</p>
@@ -195,20 +185,22 @@
     <h2>Step 4: Execute the Entry</h2>
     <p>Here's the exact sequence for opening your first funding farm position:</p>
     <h3>Preparation</h3>
-    <p>1. Transfer funds to your exchange</p>
-    <p>2. Move appropriate amounts to spot and futures wallets</p>
-    <p>3. Check the current funding rate (you want it positive — longs paying shorts)</p>
-    <p>4. Check the next funding time</p>
+    <ol>
+    <li>Transfer funds to your exchange</li>
+    <li>Move appropriate amounts to spot and futures wallets</li>
+    <li>Check the current funding rate (you want it positive — longs paying shorts)</li>
+    <li>Check the next funding time</li>
+    </ol>
     <h3>Execution (Do Both Legs Within 60 Seconds)</h3>
     <p><strong>Timing matters.</strong> The goal is to open both positions at nearly the same price to ensure delta neutrality.</p>
-    <p>1. <strong>Open the spot buy order</strong> — Market order for simplicity. Limit order if the spread is wide.</p>
-    <p>2. <strong>Immediately open the futures short</strong> — Same notional value as your spot position. Market order.</p>
+    <ol>
+    <li><strong>Open the spot buy order</strong> — Market order for simplicity. Limit order if the spread is wide.</li>
+    <li><strong>Immediately open the futures short</strong> — Same notional value as your spot position. Market order.</li>
+    </ol>
     <p><strong>Example on Binance:</strong></p>
-    <p>```</p>
-    <p>Step 1: Spot market → Buy 0.12 ETH at market (~$336)</p>
-    <p>Step 2: USDT-M Futures → Short 0.12 ETH at market (~$336 notional)</p>
-    <p>Time between orders: < 30 seconds</p>
-    <p>```</p>
+    <pre><code>Step 1: Spot market → Buy 0.12 ETH at market (~$336)
+Step 2: USDT-M Futures → Short 0.12 ETH at market (~$336 notional)
+Time between orders: &lt; 30 seconds</code></pre>
     <p><strong>Why speed matters:</strong> If ETH moves 1% between your two orders, you start with a 1% loss on one side. For a $500 position, that's $5 — which can take a week of funding to recover.</p>
     <h3>Verify Delta Neutrality</h3>
     <p>After both orders fill, check:</p>
@@ -220,13 +212,17 @@
     <h2>Step 5: Collect and Monitor</h2>
     <p>Now the passive part begins. Here's your monitoring routine:</p>
     <h3>Daily Check (5 Minutes)</h3>
-    <p>1. <strong>Check funding rate</strong> — Is it still positive? If negative, you're paying, not earning.</p>
-    <p>2. <strong>Check margin ratio</strong> — Is it above 30%? If below, add margin.</p>
-    <p>3. <strong>Check accumulated funding</strong> — Track your income.</p>
+    <ol>
+    <li><strong>Check funding rate</strong> — Is it still positive? If negative, you're paying, not earning.</li>
+    <li><strong>Check margin ratio</strong> — Is it above 30%? If below, add margin.</li>
+    <li><strong>Check accumulated funding</strong> — Track your income.</li>
+    </ol>
     <h3>Weekly Review (15 Minutes)</h3>
-    <p>1. <strong>Calculate actual APY</strong> — Total funding collected / total capital deployed × (365/days)</p>
-    <p>2. <strong>Compare to alternatives</strong> — Is funding farming still the best use of this capital?</p>
-    <p>3. <strong>Check for negative funding trend</strong> — If funding has been negative for > 48 hours, consider closing.</p>
+    <ol>
+    <li><strong>Calculate actual APY</strong> — Total funding collected / total capital deployed × (365/days)</li>
+    <li><strong>Compare to alternatives</strong> — Is funding farming still the best use of this capital?</li>
+    <li><strong>Check for negative funding trend</strong> — If funding has been negative for > 48 hours, consider closing.</li>
+    </ol>
     <h3>When to Close</h3>
     <p>Close your position when:</p>
     <ul>
@@ -237,32 +233,31 @@
     </ul>
     <h3>Closing Procedure</h3>
     <p><strong>Reverse of entry — do both within 60 seconds:</strong></p>
-    <p>1. Close the futures short (buy to cover)</p>
-    <p>2. Sell the spot position</p>
+    <ol>
+    <li>Close the futures short (buy to cover)</li>
+    <li>Sell the spot position</li>
+    </ol>
     <p>Or, if you want to keep the spot:</p>
-    <p>1. Close just the futures short</p>
-    <p>2. Keep the spot ETH (you're now long ETH)</p>
+    <ol>
+    <li>Close just the futures short</li>
+    <li>Keep the spot ETH (you're now long ETH)</li>
+    </ol>
     <h2>Step 6: Track Your Performance</h2>
     <p>Serious funding farming requires tracking. Build a simple spreadsheet or use this framework:</p>
     <h3>Key Metrics</h3>
-    <p>```</p>
-    <p>Daily tracking:</p>
-    <ul>
-    <li>Date</li>
-    <li>Funding rate (each 8h payment)</li>
-    <li>Funding income ($)</li>
-    <li>Margin ratio</li>
-    <li>Net PnL (funding income - fees - slippage)</li>
-    </ul>
-    <p>Weekly summary:</p>
-    <ul>
-    <li>Total funding income</li>
-    <li>Total fees paid</li>
-    <li>Net profit</li>
-    <li>Annualized APY</li>
-    <li>Capital deployed</li>
-    </ul>
-    <p>```</p>
+    <pre><code>Daily tracking:
+- Date
+- Funding rate (each 8h payment)
+- Funding income ($)
+- Margin ratio
+- Net PnL (funding income - fees - slippage)
+
+Weekly summary:
+- Total funding income
+- Total fees paid
+- Net profit
+- Annualized APY
+- Capital deployed</code></pre>
     <h3>Realistic Return Expectations</h3>
     <p>Based on our experience running funding farms with ~$200 deployed:</p>
     <table>
@@ -311,10 +306,12 @@
     </ul>
     <h2>What We've Learned Running $200 in Funding Farms</h2>
     <p>At Nora Institute, we operate a small funding farm as part of our $490 portfolio. Here's what we've learned firsthand:</p>
-    <p>1. <strong>Consistency beats optimization.</strong> Earning $3-5/day reliably matters more than occasionally catching a 0.2% rate.</p>
-    <p>2. <strong>The hardest part is patience.</strong> When funding dips, the temptation to close and redeploy is strong. Usually, waiting is correct.</p>
-    <p>3. <strong>It compounds.</strong> Reinvesting funding income into the farm creates compound growth. Our $200 allocation generates enough to add ~$100/month to the position.</p>
-    <p>4. <strong>It pairs well with other strategies.</strong> Funding farming provides base income that reduces pressure on more volatile strategies (prediction markets, trading).</p>
+    <ol>
+    <li><strong>Consistency beats optimization.</strong> Earning $3-5/day reliably matters more than occasionally catching a 0.2% rate.</li>
+    <li><strong>The hardest part is patience.</strong> When funding dips, the temptation to close and redeploy is strong. Usually, waiting is correct.</li>
+    <li><strong>It compounds.</strong> Reinvesting funding income into the farm creates compound growth. Our $200 allocation generates enough to add ~$100/month to the position.</li>
+    <li><strong>It pairs well with other strategies.</strong> Funding farming provides base income that reduces pressure on more volatile strategies (prediction markets, trading).</li>
+    </ol>
     <h2>Conclusion</h2>
     <p>Funding rate farming is:</p>
     <ul>
@@ -325,9 +322,11 @@
     <li><strong>Educational</strong> — it teaches you market microstructure</li>
     </ul>
     <p><strong>Your first three steps:</strong></p>
-    <p>1. <strong>Open an exchange account</strong> (if you don't have one) and deposit $500+</p>
-    <p>2. <strong>Check current BTC/ETH funding rates</strong> on Coinglass</p>
-    <p>3. <strong>Execute your first farm</strong> using the entry procedure in Step 4</p>
+    <ol>
+    <li><strong>Open an exchange account</strong> (if you don't have one) and deposit $500+</li>
+    <li><strong>Check current BTC/ETH funding rates</strong> on Coinglass</li>
+    <li><strong>Execute your first farm</strong> using the entry procedure in Step 4</li>
+    </ol>
     <p>Start small, track everything, learn the rhythm of funding cycles. Within a month, you'll have a working income stream and a deep understanding of how leveraged markets really work.</p>
     <hr>
     <p><em>Part of the Nora Institute's DeFi Mechanics series. For deeper understanding, read "How Funding Rates Predict Liquidation Risk" and "The Math Behind Negative Funding Rates."</em></p>
